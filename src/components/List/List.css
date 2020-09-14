@@ -3,12 +3,31 @@
   height: 700px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   border: 1px solid black;
   border-radius: 4px;
   margin: 10px;
+  background-color: rgb(105, 190, 155);
 }
 .listCity{
   display: flex;
+  width: 300px;
+  min-height: 30px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 10px;
+  background-color: rgb(23, 95, 64);
+}
+.listCityAll{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+  min-height: 200px;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 10px;
+  background-color: rgb(23, 95, 64);
 }

@@ -1,0 +1,11 @@
+.Night {
+  width: 49%;
+  height: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 5px;
+}

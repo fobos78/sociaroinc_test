@@ -4,11 +4,8 @@ import ThemeContext from '../../context';
 import './List.css';
 
 function List() {
-  const { data, setData, list, setList, city, setCity, KEY } = useContext(ThemeContext);
+  const { data, setData, list, setList, city, setCity, oldcity, setOldCity, flag, setFlag, KEY } = useContext(ThemeContext);
   const [search, setSearch] = useState('');
-  const [oldcity, setOldCity] = useState('');
-  console.log('data>>>>', data);
-
   function inputChange(event) {
     setSearch(event.target.value);
   }
@@ -20,41 +17,21 @@ function List() {
     setCity(search);
     setSearch('');
   }
-  function choiceCity(id) {
-    const actualCity = list.find((el) => el.id === id);
-    setData(actualCity);
+  function choiceCity(el) {
+    setData(el);
   }
-  useEffect(() => {
-    async function dataWhetherCity() {
-      const respons = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`);
-      if (respons.ok) {
-        const result = await respons.json();
-        console.log('result', result);
-        setList([...list, result]);
-        setOldCity('');
-      } else {
-        setList(list);
-        setOldCity('Такого города нет');
-      }
-    }
-    dataWhetherCity();
-  }, [city, KEY, setList]);
-  useEffect(() => {
-    const actualCity = list.find((el) => el.name === 'Moscow');
-    setData(actualCity);
-  }, [setData]);
   return (
     <div className="List">
       <h3>{oldcity}</h3>
       <div>
         <input onChange={inputChange} value={search} />
-        <button type="button" onClick={addCity}>Добавить город</button>
+        <button type="button" onClick={addCity}>Add City</button>
       </div>
       {
         list.map((el) => (
           <div key={el.name} className="listCity">
-            <h4 onClick={() => { choiceCity(el.id); }}>Город:{el.name}</h4>
-            <h4>Температура:{Math.floor(el.main.temp - 272)}C</h4>
+            <h4 onClick={() => choiceCity(el)}>City:{el.name}</h4>
+            <h4>Temp:{Math.floor(el.main.temp - 272)}C</h4>
             <button type="button" onClick={() => { delCity(el.id); }}>X</button>
           </div>
         ))
