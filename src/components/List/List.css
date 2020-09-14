@@ -1,0 +1,14 @@
+.List {
+  width: 33%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 10px;
+}
+.listCity{
+  display: flex;
+}
