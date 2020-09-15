@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 
 import ThemeContext from '../../context';
 import './List.css';
@@ -12,7 +12,7 @@ function List() {
   function delCity(name) {
     const newList = list.filter((el) => el.name !== name);
     setList(newList);
-    delete localStorage[name];
+    delete localStorage[name.toLowerCase()];
   }
   function addCity() {
     setCity(search);
@@ -24,13 +24,13 @@ function List() {
   return (
     <div className="List">
       <h3>{oldcity}</h3>
-      <div>
+      <div className="inputList">
         <input onChange={inputChange} value={search} />
         <button type="button" onClick={addCity}>Add City</button>
       </div>
       {
         list.map((el) => (
-          <div key={el.name} className="listCity">
+          <div key={Math.random()} className="listCity">
             <h4 onClick={() => choiceCity(el)}>City:{el.name}</h4>
             <h4>Temp:{Math.floor(el.main.temp - 272)}C</h4>
             <button type="button" onClick={() => { delCity(el.name); }}>X</button>

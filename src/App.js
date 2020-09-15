@@ -5,47 +5,45 @@ import List from './components/List';
 import ThemeContext from './context';
 import './App.css';
 
-// 330216f9e3042b8a57a7865c3de67865
-// 8ddb2ae4d480545c1441bb2374c9ff6d
 function App() {
-  //const KEY = '8ddb2ae4d480545c1441bb2374c9ff6d';
   const [key, setKey] = useState('');
-  const [city, setCity] = useState('Moscow');
+  const [city, setCity] = useState('');
   const [data, setData] = useState('');
   const [list, setList] = useState([]);
   const [oldcity, setOldCity] = useState('');
   const [flag, setFlag] = useState(false);
+  const [i, setI] = useState(0);
+
+  function pause(ms) {
+    return new Promise(resolve => setTimeout(() => resolve(), ms));
+  }
 
   async function dataWhetherCity() {
     const respons = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`);
+    await pause(10);
     if (respons.ok) {
       const result = await respons.json();
-      localStorage[`${city}`] = city;
+      localStorage[`${city.toLowerCase()}`] = city.toLowerCase();
       setList([...list, result]);
       setOldCity('');
     } else {
-      setOldCity('Такого города нет');
+      setOldCity('');
+    }
+    if (i < localStorage.length) {
+      setI(() => i + 1);
     }
   }
   async function myKey() {
     const respons = await fetch('/api/key');
     const result = await respons.json();
     setKey(result.KEY);
-    console.log('test', respons);
-    console.log('result', result.KEY);
-    console.log('key', key);
   }
 
   useEffect(() => {
-    myKey();
-  }, [key]);
-  useEffect(() => {
     dataWhetherCity();
-    // for (let i = 0; i < localStorage.length; i++) {
-    //   setCity(localStorage.key(i));
-    // }
-  }, [city, key]);
-
+    myKey();
+    setCity(localStorage.key(i));
+  }, [city, key, i]);
 
   return (
     <div className="App">
