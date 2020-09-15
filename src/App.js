@@ -20,7 +20,7 @@ function App() {
 
   async function dataWhetherCity() {
     const respons = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`);
-    await pause(10);
+    await pause(100);
     if (respons.ok) {
       const result = await respons.json();
       localStorage[`${city.toLowerCase()}`] = city.toLowerCase();
