@@ -16,8 +16,8 @@ function Day() {
           data
           && (
             <div>
-              <h2>{data.name}</h2>
               <div className="listCityAll">
+                <h2>{data.name}</h2>
                 <h3>min-{Math.floor(data.main.temp_min - 272)}</h3>
                 <h3>max-{Math.floor(data.main.temp_max - 272)}</h3>
                 <h3>clouds-{data.clouds.all}%</h3>

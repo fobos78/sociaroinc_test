@@ -8,7 +8,7 @@ import './App.css';
 // 330216f9e3042b8a57a7865c3de67865
 function App() {
   const KEY = '330216f9e3042b8a57a7865c3de67865';
-  const [city, setCity] = useState('Moscow');
+  const [city, setCity] = useState('');
   const [data, setData] = useState('');
   const [list, setList] = useState([]);
   const [oldcity, setOldCity] = useState('');
@@ -19,14 +19,20 @@ function App() {
       const respons = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}`);
       if (respons.ok) {
         const result = await respons.json();
+        localStorage[`${city}`] = city;
+        console.log(city);
         setList([...list, result]);
         setOldCity('');
       } else {
-        setList(list);
         setOldCity('Такого города нет');
       }
     }
-    dataWhetherCity();
+    for (let i = 0; i < localStorage.length; i++) {
+      dataWhetherCity();
+      setCity(() => localStorage.key(i));
+      console.log('localStorage.key', i, localStorage.key(i));
+      // console.log('city', city);
+    }
   }, [city, KEY, setList]);
 
   return (

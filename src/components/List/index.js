@@ -9,9 +9,10 @@ function List() {
   function inputChange(event) {
     setSearch(event.target.value);
   }
-  function delCity(id) {
-    const newList = list.filter((el) => el.id !== id);
+  function delCity(name) {
+    const newList = list.filter((el) => el.name !== name);
     setList(newList);
+    delete localStorage[name];
   }
   function addCity() {
     setCity(search);
@@ -32,7 +33,7 @@ function List() {
           <div key={el.name} className="listCity">
             <h4 onClick={() => choiceCity(el)}>City:{el.name}</h4>
             <h4>Temp:{Math.floor(el.main.temp - 272)}C</h4>
-            <button type="button" onClick={() => { delCity(el.id); }}>X</button>
+            <button type="button" onClick={() => { delCity(el.name); }}>X</button>
           </div>
         ))
       }

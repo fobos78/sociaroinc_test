@@ -1,6 +1,6 @@
 .List {
   width: 33%;
-  height: 700px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -8,26 +8,21 @@
   border: 1px solid black;
   border-radius: 4px;
   margin: 10px;
-  background-color: rgb(105, 190, 155);
+  background-image: url("/img/3.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
-.listCity{
+.listCity {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 300px;
   min-height: 30px;
   border: 1px solid black;
   border-radius: 4px;
   margin: 10px;
-  background-color: rgb(23, 95, 64);
+  background-color: rgb(47, 102, 78);
 }
-.listCityAll{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 400px;
-  min-height: 200px;
-  border: 1px solid black;
-  border-radius: 4px;
-  margin: 10px;
-  background-color: rgb(23, 95, 64);
-}
+
